@@ -23,11 +23,11 @@ app.use(cookieParser());
 
 // jo b hi request frontend se a raha unhe accept kro
 app.use(
-	cors({
-		origin:"http://localhost:5173",
-		credentials:true,
-	})
-)
+  cors({
+    origin: ["http://localhost:5173", "https://skill-sync-frontend.vercel.app"],
+    credentials: true,
+  })
+);
 
 app.use(
 	fileUpload({
