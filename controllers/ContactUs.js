@@ -12,7 +12,7 @@ exports.contactUs= async (req, res) => {
         }
 
         const mailBody = generateEmailBody({ name, email, message });
-        await mailSender("localmart222@gmail.com", "Contact Us Form", mailBody);
+        await mailSender("skillsync.assist@gmail.com", "Contact Us Form", mailBody);
 
         res.status(200).json({ success: true, message: "Email sent successfully!" });
     } catch (error) {
