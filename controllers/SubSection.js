@@ -115,6 +115,8 @@ exports.updateSubSection = async (req, res) => {
 
 exports.deleteSubSection = async (req, res) => {
   try {
+    console.log("currently in subsection controller");
+    
     const { subSectionId, sectionId } = req.body
     await Section.findByIdAndUpdate(
         sectionId,

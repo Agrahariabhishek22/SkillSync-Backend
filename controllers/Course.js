@@ -12,8 +12,9 @@ const { convertSecondsToDuration } = require("../utils/secToDuration")
 exports.createCourse = async (req, res) => {
   try {
     // Get user ID from request object
+    console.log("in course creation controller");
     const userId = req.user.id
-
+    
     // Get all required fields from request body
     let {
       courseName,
@@ -26,6 +27,8 @@ exports.createCourse = async (req, res) => {
       instructions: _instructions,
     } = req.body
     // Get thumbnail image from request files
+    console.log("before thumbnail");
+    
     const thumbnail = req.files.thumbnailImage
 
     // Convert the tag and instructions from stringified Array to Array

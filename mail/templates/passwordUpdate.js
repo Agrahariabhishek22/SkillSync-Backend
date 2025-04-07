@@ -55,8 +55,8 @@ exports.passwordUpdated = (email, name) => {
     
     <body>
         <div class="container">
-            <a href="https://studynotion-edtech-project.vercel.app"><img class="logo"
-                    src="https://i.ibb.co/7Xyj3PC/logo.png" alt="SkillSync Logo"></a>
+            <a href="https://skill-sync-frontend.vercel.app/"><img class="logo"
+                    src="https://res.cloudinary.com/dtfgohnkh/image/upload/v1744044183/MargDarshak/vceqfgdl7oqx3xx0xxct.jpg" alt="SkillSync Logo"></a>
             <div class="message">Password Update Confirmation</div>
             <div class="body">
                 <p>Hey ${name},</p>
@@ -66,7 +66,7 @@ exports.passwordUpdated = (email, name) => {
             </div>
             <div class="support">If you have any questions or need further assistance, please feel free to reach out to us
                 at
-                <a href="mailto:info@studynotion.com">info@studynotion.com</a>. We are here to help!
+                <a href="mailto:info@skillsync.com">info@skillsync.com</a>. We are here to help!
             </div>
         </div>
     </body>
