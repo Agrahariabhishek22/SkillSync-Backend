@@ -144,7 +144,6 @@ exports.signup = async (req, res) => {
       contactNumber,
       password: hashedPassword,
       accountType: accountType,
-      // approved: approved,
       additionalDetails: profileDetails._id,
       image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
     });
@@ -195,7 +194,7 @@ exports.login = async (req, res) => {
         { email: user.email, id: user._id, accountType: user.accountType },
         process.env.JWT_SECRET,
         {
-          expiresIn: "24h",
+          expiresIn: "48h",
         }
       );
       // Save token to user document in database
@@ -210,7 +209,7 @@ exports.login = async (req, res) => {
         success: true,
         token,
         user,
-        message: `User Logged In Success`,
+        message: `User Logged In Successfully`,
       });
     } else {
       return res.status(401).json({

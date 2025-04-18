@@ -6,18 +6,9 @@ const { uploadImageToCloudinary } = require("../utils/imageUploader")
 // Create a new sub-section for a given section
 exports.createSubSection = async (req, res) => {
   try {
-    // fetch data from req body
-    // extract file/video
-    // upload video to cloudinary and get secure url
-    // create a subsection
-    // update section with this subsection objectId
-    // return response
-
-    // Extract necessary information from the request body
     const { sectionId, title, description } = req.body
     const video = req.files.video;
  
-    // Check if all necessary fields are provided
     if (!sectionId || !title || !description || !video) {
       return res
         .status(404)
@@ -151,4 +142,4 @@ exports.deleteSubSection = async (req, res) => {
       message: "An error occurred while deleting the SubSection",
     })
   }
-}
+} 

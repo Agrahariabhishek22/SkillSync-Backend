@@ -94,7 +94,7 @@ exports.verifyPayment = async (req, res) => {
   }
 
   let body = razorpay_order_id + "|" + razorpay_payment_id
-
+ 
   const expectedSignature = crypto
     .createHmac("sha256", process.env.RAZORPAY_SECRET) // Step 1: Create HMAC using SHA-256 and a secret key
     .update(body.toString())                           // Step 2: Add the request body data
@@ -123,7 +123,7 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
   }
 
   try {
-    const enrolledStudent = await User.findById(userId)
+    const enrolledStudent = await User.findById(userId);
     await mailSender(
       enrolledStudent.email,
       `Payment Received`,

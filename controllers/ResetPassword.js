@@ -28,7 +28,7 @@ exports.resetPasswordToken = async (req, res) => {
     );
     console.log("DETAILS", updatedDetails);
 
-    const url = `http://localhost:5173/update-password/${token}`;
+    const url = `https://skill-sync-frontend.vercel.app/${token}`;
     console.log(url);
     await mailSender(
       email,
