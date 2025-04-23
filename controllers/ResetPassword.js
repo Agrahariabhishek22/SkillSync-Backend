@@ -28,14 +28,14 @@ exports.resetPasswordToken = async (req, res) => {
     );
     console.log("DETAILS", updatedDetails);
 
-    const url = `https://skill-sync-frontend.vercel.app/${token}`;
+    const url = `https://skill-sync-frontend.vercel.app/update-password/${token}`;
     console.log(url);
     await mailSender(
       email,
       "Password Reset",
       `Your Link for email verification is ${url}. Please click this url to reset your password.`
     );
-    console.log("ok url ")
+    // console.log("ok url ")
     res.json({
       success: true,
       message:
