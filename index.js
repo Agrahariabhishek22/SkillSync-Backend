@@ -12,13 +12,16 @@ const {cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
 
+
 dotenv.config();
 const PORT=process.env.PORT||4000;
 
 // databse connect
 database.connect();
 // middlewares
+// Parses incoming JSON requests
 app.use(express.json());
+// Parses cookies from requests
 app.use(cookieParser());
 
 // jo b hi request frontend se a raha unhe accept kro

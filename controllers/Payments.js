@@ -11,7 +11,6 @@ const { paymentSuccessEmail } = require("../mail/templates/paymentSuccessEmail")
 const CourseProgress = require("../models/CourseProgress")
 
 
-
 // Capture the payment and initiate the Razorpay order
 exports.capturePayment = async (req, res) => {
   const { courses } = req.body
@@ -95,6 +94,9 @@ exports.verifyPayment = async (req, res) => {
 
   let body = razorpay_order_id + "|" + razorpay_payment_id
  
+// createHmac("sha256", key) | Create a hashing object using your secret key
+// .update(data) | Provide the string you want to hash (like `orderID
+// .digest("hex") | Get the final hashed output (signature) as a hex string
   const expectedSignature = crypto
     .createHmac("sha256", process.env.RAZORPAY_SECRET) // Step 1: Create HMAC using SHA-256 and a secret key
     .update(body.toString())                           // Step 2: Add the request body data
@@ -158,7 +160,6 @@ const enrollStudents = async (courses, userId, res) => {
         { $push: { studentsEnrolled: userId } },
         { new: true }
       )
-
       if (!enrolledCourse) {
         return res
           .status(500)

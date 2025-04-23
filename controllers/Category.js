@@ -56,15 +56,15 @@ exports.categoryPageDetails = async (req, res) => {
     // console.log("PRINTING CATEGORY ID: ", categoryId);
     // Get courses for the specified category
     const selectedCategory = await Category.findById(categoryId)
-      .populate({
-        path: "courses",
-        match: { status: "Published" },
-        populate: "ratingAndReviews",
-        populate: {
-          path: "instructor",
-      },
-      })
-      .exec()
+  .populate({
+    path: "courses",
+    match: { status: "Published" },
+    populate: [
+      { path: "ratingAndReviews" },
+      { path: "instructor" },
+    ],
+  })
+  .exec();
 
     //console.log("SELECTED COURSE", selectedCategory)
     // Handle the case when the category is not found
@@ -92,28 +92,32 @@ exports.categoryPageDetails = async (req, res) => {
       categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
         ._id
     )
-      .populate({
-        path: "courses",
-        match: { status: "Published" },
-        populate: {
-          path: "instructor",
-      },
-      })
-      .exec()
+    .populate({
+      path: "courses",
+      match: { status: "Published" },
+      populate: [
+        { path: "ratingAndReviews" },
+        { path: "instructor" },
+      ],
+    })
+    .exec();
       //console.log("Different COURSE", differentCategory)
     // Get top-selling courses across all categories
     const allCategories = await Category.find()
-      .populate({
-        path: "courses",
-        match: { status: "Published" },
-        populate: {
-          path: "instructor",
-      },
-      })
-      .exec()
+    .populate({
+      path: "courses",
+      match: { status: "Published" },
+      populate: [
+        { path: "ratingAndReviews" },
+        { path: "instructor" },
+      ],
+    })
+    .exec();
+      // flatMap() first maps each category to its courses array, then flattens the result one level deep.
+      // allCourses will be a single array of all course names from all categories.
     const allCourses = allCategories.flatMap((category) => category.courses)
     const mostSellingCourses = allCourses
-      .sort((a, b) => b.sold - a.sold)
+      .sort((a, b) => b.studentsEnrolled.length - a.studentsEnrolled.length )
       .slice(0, 10)
      // console.log("mostSellingCourses COURSE", mostSellingCourses)
     res.status(200).json({

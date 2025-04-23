@@ -26,7 +26,6 @@ exports.sendOtp = async (req, res, next) => {
       specialChars: false,
     });
     // console.log(otp);
-
     // check unique otp or not
     const result = await OTP.findOne({otp});
 
@@ -125,7 +124,7 @@ exports.signup = async (req, res) => {
     }
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
-
+ 
     // Create the user
     // let approved = "";
     // approved === "Instructor" ? (approved = false) : (approved = true);
@@ -194,6 +193,7 @@ exports.login = async (req, res) => {
         { email: user.email, id: user._id, accountType: user.accountType },
         process.env.JWT_SECRET,
         {
+          // Sets how long the JWT token is valid for.
           expiresIn: "48h",
         }
       );
@@ -202,7 +202,10 @@ exports.login = async (req, res) => {
       user.password = undefined;
       // Set cookie for token and return success response
       const options = {
+        // Sets how long the cookie should stay in the browser.
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        // Only the server can access the cookie, not JavaScript in the browser.
+        // Useful for storing auth tokens securely.
         httpOnly: true,
       };
       res.cookie("token", token, options).status(200).json({
